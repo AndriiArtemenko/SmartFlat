@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html>
+    <%= stylesheet_link_tag "application"%>
 <head>
   <title></title>
 </head>
 <body>
     <div>Device list:</div>
-    <table border="1">
-      <tr>
-        <th>Id</th>
-        <th>Device</th>
-        <th>Class</th>
-        <th></th>
-      </tr>
-
-      <% @devices.each do |device| %>
+    <div  style="width: 50%">
+        <table class="table table-hover">
           <tr>
-            <td><%= device.id %></td>
-            <td><%= device.name %></td>
-            <td><%= device.class.name %></td>
-            <td><%= link_to("details", :action => "edit", :id => device.id) %></td>
+            <th>Id</th>
+            <th>Device</th>
+            <th>Class</th>
+            <th></th>
           </tr>
-      <% end %>
-    </table>
 
+          <% @devices.each do |device| %>
+              <tr>
+                <td><%= device.id %></td>
+                <td><%= device.name %></td>
+                <td><%= device.class.name %></td>
+                <td><%= link_to("details", :action => "edit", :id => device.id) %></td>
+              </tr>
+          <% end %>
+        </table>
+    </div>
     <br>
     <%= form_tag("/devices/new", :method => "get") do %>
     <%= select(:device, :type, @devices_list) %>
