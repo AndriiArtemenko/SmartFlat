@@ -5,12 +5,18 @@
 
 </head>
 <body>
-  <table>
+<script>
+    function goToLink(link) {
+        window.location = link;
+    }
+</script>
+  <table align="center">
     <tr>
-      <td><a href="/devices/list">Devices</a></td>
-    </tr>
-    <tr>
-      <td><a href="/providers/list">Providers</a></td>
+      <td><img src="/assets/images/devices.png" alt="Devices img" onclick="goToLink('/devices/list')"> </td>
+      <td><a href="/devices/list" style="text-decoration: none">Devices</a></td>
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+      <td><img src="/assets/images/providers.png" alt="Providers img" onclick="goToLink('/providers/list')"> </td>
+      <td><a href="/providers/list" style="text-decoration: none">Providers</a></td>
     </tr>
   </table>
 </body>
