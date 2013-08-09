@@ -59,6 +59,7 @@ SmartFlat::Application.routes.draw do
   get "devices/list" => "devices#list"
   get "devices/new" => "devices#new"
   get "devices/:id" => "devices#edit"
+  get "devices/:id/image" => "devices#image"
 
   get "providers/list" => "providers#list"
   get "providers/new" => "providers#new"

@@ -9,6 +9,7 @@
     <div  style="width: 50%">
         <table class="table table-hover">
           <tr>
+            <th></th>
             <th>Id</th>
             <th>Device</th>
             <th>Class</th>
@@ -17,6 +18,7 @@
 
           <% @devices.each do |device| %>
               <tr>
+                <td><%= image_tag url_for(:controller => "devices", :action => "image", :id => device.id) %></td>
                 <td><%= device.id %></td>
                 <td><%= device.name %></td>
                 <td><%= device.class.name %></td>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130809092322) do
+ActiveRecord::Schema.define(:version => 20130809135224) do
 
   create_table "devices", :force => true do |t|
     t.string   "name"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20130809092322) do
     t.string   "type"
     t.string   "status"
     t.string   "custom_value"
+    t.binary   "icon"
   end
 
   create_table "messages", :force => true do |t|

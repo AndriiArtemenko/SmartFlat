@@ -32,4 +32,10 @@ class DevicesController < ApplicationController
     logger.debug("Render : #{@device}")
     render "#{@device.class.to_s.downcase}s/edit"
   end
+
+  def image
+    @device = Device.find(params[:id])
+    send_data @device.icon, :type => 'image/png',:disposition => 'inline'
+  end
+
 end
