@@ -1,0 +1,17 @@
+<h1>Listing messages</h1>
+ 
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Sensors raw</th>
+    <th>Sensors dec</th>
+  </tr>
+ 
+  <% @messages.each do |message| %>
+    <tr>
+      <td><%= message.date %></td>
+      <td><%= message.value %></td>
+      <td><%= message.sensors %></td>
+    </tr>
+  <% end %>
+</table>

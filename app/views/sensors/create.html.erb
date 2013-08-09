@@ -1,0 +1,15 @@
+<%= form_for :sensor do |f| %>
+  <p>
+    <%= f.label :pin %><br>
+    <%= f.text_field :pin %>
+  </p>
+ 
+  <p>
+    <%= f.label :offset %><br>
+    <%= f.text_area :offset %>
+  </p>
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

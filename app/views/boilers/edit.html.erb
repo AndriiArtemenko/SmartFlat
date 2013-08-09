@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= @device.name %></title>
+</head>
+<body>
+    <h2>Boiler info:</h2>
+    <div>
+      <strong>Id:</strong>
+      <%= @device.id %>
+    </div>
+
+    <div>
+      <strong>Name:</strong>
+      <%= @device.name %>
+    </div>
+
+    <div>
+      <strong>Status:</strong>
+      <%= @device.remote_status %>
+    </div>
+
+    <div>
+      <strong>Current temperature:</strong>
+      <%= @device.get_temperature %>
+    </div>
+
+    <div>
+      <strong>Current supply:</strong>
+      <%= @device.get_current %>
+    </div>
+
+    <%= form_for(@device, :url => devices_path, :url => {:id => @device.id}) do |f| %>
+        <%= f.select :status, [Device::Status::ON, Device::Status::OFF] %>
+        <%= f.submit "Update" %>
+    <% end %>
+
+    <h2>Messages</h2>
+    <% @device.messages.each do |message| %>
+        <div>
+          <div>
+            <%= message.date %>
+          </div>
+          <div>
+            <%= message.value %>
+          </div>
+        </div>
+        <br>
+    <% end %>
+</body>
+</html>

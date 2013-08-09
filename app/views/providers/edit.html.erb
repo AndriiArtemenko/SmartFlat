@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= @provider.name %></title>
+</head>
+<body>
+<h2>Provider info:</h2>
+    <div>
+      <strong>Id:</strong>
+      <%= @provider.id %>
+    </div>
+
+    <div>
+      <strong>Name:</strong>
+      <%= @provider.name %>
+    </div>
+
+    <div>
+      <strong>Used by:</strong>
+      <%= !@provider.receiver ? "None" : @provider.receiver.name %>
+    </div>
+
+    <h3>Settings</h3>
+    <table border="1">
+      <tr>
+        <th>Key</th>
+        <th>Value</th>
+      </tr>
+
+      <% @provider.provider_config.each do |config| %>
+         <tr>
+           <td><%= config.key %></td>
+           <td><%= config.value %></td>
+         </tr>
+      <% end %>
+
+    </table>
+</body>
+</html>
+

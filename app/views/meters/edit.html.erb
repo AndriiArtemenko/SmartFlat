@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= @device.name %></title>
+</head>
+<body>
+    <h2>Meter info:</h2>
+    <div>
+      <strong>Meter:</strong>
+      <%= @device.id %>
+    </div>
+
+    <div>
+      <strong>Name:</strong>
+      <%= @device.name %>
+    </div>
+
+    <div>
+      <strong>Value</strong>
+      <%= @device.meter_state %>
+    </div>
+
+    <%= form_for(@device, :url => devices_path, :url => {:id => @device.id}) do |f| %>
+        <%= f.text_field(:meter_value, :value => @device.meter_state) %>
+        <%= f.submit "Change" %>
+    <% end %>
+</body>
+</html>
+
