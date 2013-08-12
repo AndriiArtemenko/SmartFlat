@@ -1,51 +1,54 @@
 <!DOCTYPE html>
 <html>
+    <%= stylesheet_link_tag "application"%>
 <head>
   <title><%= @device.name %></title>
 </head>
 <body>
-    <h2>Boiler info:</h2>
-    <div>
-      <strong>Id:</strong>
-      <%= @device.id %>
+    <h2><%= @device.name %>(<%= @device.id %>):</h2>
+    <div style="width: 30%">
+        <table class="table table-striped">
+          <tr>
+            <td width=32><%= image_tag("power.png") %></td>
+            <td width=100>Status</td>
+            <td><%= @device.remote_status %></td>
+            <td>
+              <%= form_for(@device, :url => devices_path, :url => {:id => @device.id}) do |f| %>
+                  <%= f.select :status, [Device::Status::ON, Device::Status::OFF] %>
+                  <%= f.submit "Change" %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td><%= image_tag("temperature.png") %></td>
+            <td>Temperature</td>
+            <td><%= @device.get_temperature %></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><%= image_tag("current.png") %></td>
+            <td>Supply</td>
+            <td><%= @device.get_current %></td>
+            <td></td>
+          </tr>
+        </table>
     </div>
 
-    <div>
-      <strong>Name:</strong>
-      <%= @device.name %>
+    <h3>Messages</h3>
+    <div  style="width: 50%">
+      <table class="table table-hover">
+        <tr>
+          <th  width=30%>Date</th>
+          <th>Message</th>
+        </tr>
+
+        <% @device.messages.each do |message| %>
+            <tr>
+              <td><%= message.date %></td>
+              <td><%= message.value %></td>
+            </tr>
+        <% end %>
+      </table>
     </div>
-
-    <div>
-      <strong>Status:</strong>
-      <%= @device.remote_status %>
-    </div>
-
-    <div>
-      <strong>Current temperature:</strong>
-      <%= @device.get_temperature %>
-    </div>
-
-    <div>
-      <strong>Current supply:</strong>
-      <%= @device.get_current %>
-    </div>
-
-    <%= form_for(@device, :url => devices_path, :url => {:id => @device.id}) do |f| %>
-        <%= f.select :status, [Device::Status::ON, Device::Status::OFF] %>
-        <%= f.submit "Update" %>
-    <% end %>
-
-    <h2>Messages</h2>
-    <% @device.messages.each do |message| %>
-        <div>
-          <div>
-            <%= message.date %>
-          </div>
-          <div>
-            <%= message.value %>
-          </div>
-        </div>
-        <br>
-    <% end %>
 </body>
 </html>

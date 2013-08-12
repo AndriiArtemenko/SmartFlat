@@ -5,23 +5,13 @@
   <title><%= @provider.name %></title>
 </head>
 <body>
-<h2>Provider info:</h2>
-    <div>
-      <strong>Id:</strong>
-      <%= @provider.id %>
-    </div>
-
-    <div>
-      <strong>Name:</strong>
-      <%= @provider.name %>
-    </div>
-
+<h2><%= @provider.name %>(<%= @provider.id %>):</h2>
     <div>
       <strong>Used by:</strong>
       <%= !@provider.receiver ? "None" : @provider.receiver.name %>
     </div>
 
-    <h3>Settings</h3>
+    <h3>Settings:</h3>
     <div  style="width: 50%">
         <table class="table table-hover">
           <tr>
