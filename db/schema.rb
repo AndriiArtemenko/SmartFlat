@@ -59,6 +59,13 @@ ActiveRecord::Schema.define(:version => 20130809135224) do
 
   add_index "providers", ["receiver_type", "receiver_id"], :name => "index_providers_on_receiver_type_and_receiver_id"
 
+  create_table "sensors", :force => true do |t|
+    t.string   "pin"
+    t.string   "offset"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "wifly_configs", :force => true do |t|
     t.string   "subtype"
     t.string   "name"

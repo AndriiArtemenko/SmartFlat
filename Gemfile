@@ -24,6 +24,8 @@ gem 'jquery-rails'
 
 gem 'log4r', '1.1.9' 
 
+gem 'thin'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
