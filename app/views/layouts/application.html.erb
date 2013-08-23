@@ -5,6 +5,18 @@
 
 </head>
 <body>
+    <%= javascript_include_tag :application %>
+    <%= stylesheet_link_tag :application %>
+    <div style="text-align:right; margin-right: 15px;">
+      <div>
+        <% if user_signed_in? %>
+            Signed in as <strong><%= current_user.email %></strong>
+            <%= link_to('Sign out', destroy_user_session_path, :method => :delete) %>
+        <% else %>
+            <%= link_to "Sign in", new_user_session_path %>
+        <% end %>
+      </div>
+    </div>
 
 <%= yield %>
 

@@ -1,0 +1,45 @@
+<!-- <h1 style="padding-left: 50px">Sign up</h1>   -->
+<div>
+  <div>
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-horizontal', :role => 'form' }) do |f| %>
+        <blockquote>
+          <%= devise_error_messages! %>
+        </blockquote>
+
+        <div class="form-group">
+          <label for="inputEmail1" class="col-lg-2 control-label"><%= :email %></label>
+          <div class="col-lg-10" style="width: 300px">
+            <%= f.email_field(:email, :autofocus => true, :class => 'form-control') %>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputEmail1" class="col-lg-2 control-label"><%= f.label :password %></label>
+          <div class="col-lg-10" style="width: 300px">
+            <%= f.password_field(:password, :class => 'form-control') %>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-lg-offset-2 col-lg-10">
+            <div class="checkbox">
+              <label>
+                <% if devise_mapping.rememberable? -%>
+                    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+                <% end -%>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-lg-offset-2 col-lg-10">
+            <%= f.submit("Sign in", :class=> 'btn btn-default')%>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-lg-offset-2 col-lg-10">
+            <%= render "devise/shared/links" %>
+          </div>
+        </div>
+
+    <% end %>
+  </div>
+</div>
