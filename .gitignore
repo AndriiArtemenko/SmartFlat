@@ -20,3 +20,4 @@ output_log.log
 log/*
 I.txt
 public/assets/*
+log4r_*.log
