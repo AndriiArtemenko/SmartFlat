@@ -21,13 +21,13 @@
           <tr>
             <td><%= image_tag("temperature.png") %></td>
             <td>Temperature</td>
-            <td><%= @device.get_temperature %></td>
+            <td><%= @device.get_temperature %>&deg;C</td>
             <td></td>
           </tr>
           <tr>
             <td><%= image_tag("current.png") %></td>
             <td>Supply</td>
-            <td><%= @device.get_current %></td>
+            <td><%= @device.get_current %> A</td>
             <td></td>
           </tr>
         </table>
