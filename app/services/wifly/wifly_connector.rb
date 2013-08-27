@@ -5,6 +5,7 @@ class WiflyConnector
   CMD_MODE = "$$$"
   CMD_EXIT = "exit"
   CMD_UART_INVALID = "unknown"
+  CMD_HELLO = "*HELLO*"
 
   TIMEOUT = 10
   LOG_PATH = "#{self.to_s}.log"
@@ -23,24 +24,28 @@ class WiflyConnector
   end
 
   # Connect to telnet host .
-  def connect
+  def connect(prompt)
     Rails.logger.debug("WiflyConnector connect start")
-    Net::Telnet::new("Host"       => @host,
+    result = Net::Telnet::new("Host"       => @host,
                      "Port"       => @port,
                      "Timeout"    => @timeout,
-                     "Output_log" => @log_path)
+                     "Output_log" => @log_path,
+                     "Prompt" => prompt)
     Rails.logger.debug("WiflyConnector connect end")
+    result
   end
 
   # execute command in programm mode.
   def execute(command)
     result = nil
-    host = connect
+    host = connect( /[$%#>] \z/n)
     if host != nil
       begin
         host.puts(CMD_MODE)
+        sleep(2)
         result = host.cmd(command)
       ensure
+        # host.cmd(CMD_EXIT)
         disconnect(host)
       end
     end
@@ -50,11 +55,12 @@ class WiflyConnector
   # execute command in UART mode.
   def uart(command)
     result = nil
-    host = connect
+    host = connect(/\z/n)
     if host != nil
       begin
-        result = host.cmd(CMD_UART_INVALID)
-        if (result.include? CMD_UART_INVALID)
+        result = host.cmd(command)
+        if (result.include?(CMD_UART_INVALID) || result.include?(CMD_HELLO))
+          sleep(2);
           result = host.cmd(command)
         else
           raise IOError, "UART does not responding"

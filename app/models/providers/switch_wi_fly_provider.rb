@@ -38,10 +38,10 @@ class SwitchWiFlyProvider < WiFlyProvider
         begin
           value = result[startPosition-4, 3].hex
           Rails.logger.debug("value = #{value}")
-          result = value & port
+          result = value & port.to_i(16)
           if (result == 0)
             return WiflyNames::PORT_OFF
-          elsif (result == port)
+          else
             return WiflyNames::PORT_ON
           end
         rescue => exception
@@ -86,7 +86,7 @@ class SwitchWiFlyProvider < WiFlyProvider
       raise(IOError, "Unknown port value!")
     end
 
-    if status = WiflyNames::PORT_ON
+    if status == WiflyNames::PORT_ON
       true
     elsif status = WiflyNames::PORT_OFF
       false

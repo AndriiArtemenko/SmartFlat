@@ -11,9 +11,6 @@ class DevicesController < ApplicationController
         device.id = Device.last.id + 1
         device.name = params[:device][:name]
         device.status = Device::Status::OFF
-        puts '<'
-        puts device
-        puts '>'
       end
     end
     if (device)
@@ -29,7 +26,6 @@ class DevicesController < ApplicationController
 
   def edit
     @device = Device.find(params[:id])
-    puts("#{@device.name}")
     logger.debug("Render : #{@device}")
     render "#{@device.class.to_s.downcase}s/edit"
   end
@@ -37,6 +33,13 @@ class DevicesController < ApplicationController
   def image
     @device = Device.find(params[:id])
     send_data @device.icon, :type => 'image/png',:disposition => 'inline'
+  end
+
+  def update
+    @device = Device.find(params[:id])
+    device_attr = params[@device.class.to_s.downcase]
+    @device.update_attributes(device_attr)
+    redirect_to :action => :edit, :id => @device
   end
 
 end

@@ -5,7 +5,7 @@ class WiFlyProvider < Provider
   TIMEOUT = "timeout";
   LOG_PATH = "log_path";
 
-  #after_initialize :init
+  after_initialize :init
 
   # Provide config value by key.
   def get_config(key)
@@ -30,5 +30,11 @@ class WiFlyProvider < Provider
     end
     @connector
   end
+
+  # Init provider configs
+  def init
+
+  end
+
 
 end

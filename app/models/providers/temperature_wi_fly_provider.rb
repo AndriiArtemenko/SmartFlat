@@ -15,7 +15,7 @@ class TemperatureWiFlyProvider < WiFlyProvider
     raw_temperature = get_raw_value;
     integer = raw_temperature >> INTEGER_MASK;
     fractional = (raw_temperature & FRACTIONAL_MASK)*10/16;
-    temperature = integer + fractional/10;
+    temperature = integer.to_s + '.' + fractional.to_s;
   end
 
   # Read provider config.
