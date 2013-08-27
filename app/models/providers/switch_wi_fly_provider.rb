@@ -6,7 +6,7 @@ class SwitchWiFlyProvider < WiFlyProvider
   def set_port(port, mask)
     Rails.logger.debug("set_port for port=#{port} mask=#{mask}.")
     begin
-      result = get_connector.execute("set sys output #{port} #{mask}")
+      result = get_connector.execute("set sys output #{mask} #{port}")
     rescue => exception
       Rails.logger.info("Execution failure:\n #{exception}")
     end

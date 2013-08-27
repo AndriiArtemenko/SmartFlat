@@ -57,6 +57,6 @@ class Boiler < Device
   end
 
   def after_save_callback
-    remote_status = status
+    self.remote_status = status
   end
 end

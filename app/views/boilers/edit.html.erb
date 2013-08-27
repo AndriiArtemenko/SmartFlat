@@ -5,7 +5,16 @@
 </head>
 <body>
     <h2><%= @device.name %>(<%= @device.id %>):</h2>
-    <div style="width: 30%">
+    <% if @device.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% @device.errors.full_messages.each do |msg| %>
+            <li style="color: red;"><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+    <div style="width: 40%">
         <table class="table table-striped">
           <tr>
             <td width=32><%= image_tag("power.png") %></td>

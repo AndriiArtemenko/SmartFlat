@@ -25,12 +25,5 @@
           <% end %>
         </table>
     </div>
-    <br>
-    <%= form_tag("/devices/new", :method => "get") do %>
-    <%= select(:device, :type, @devices_list) %>
-    <%= text_field(:device, :name) %>
-    <%= submit_tag("Add device") %>
-    <% end %>
-
 </body>
 </html>

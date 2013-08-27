@@ -38,8 +38,12 @@ class DevicesController < ApplicationController
   def update
     @device = Device.find(params[:id])
     device_attr = params[@device.class.to_s.downcase]
-    @device.update_attributes(device_attr)
-    redirect_to :action => :edit, :id => @device
+    @device.attributes = device_attr
+    @device.authorized_user = current_user.email
+    if (!@device.save)
+      @device.reload
+    end
+    render "#{@device.class.to_s.downcase}s/edit"
   end
 
 end

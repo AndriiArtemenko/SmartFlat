@@ -23,12 +23,6 @@
       <% end %>
     </table>
 </div>
-<br>
-<%= form_tag("/providers/new", :method => "get") do %>
-    <%= select(:provider, :type, @provider_list) %>
-    <%= text_field(:provider, :name) %>
-    <%= submit_tag("Add provider") %>
-<% end %>
 
 </body>
 </html>

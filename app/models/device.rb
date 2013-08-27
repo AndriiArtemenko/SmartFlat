@@ -1,9 +1,13 @@
 class Device < ActiveRecord::Base
+  attr_accessor :authorized_user
+
   has_many :messages
 
   after_initialize :init
   before_save :before_save_callback
   after_save :after_save_callback
+
+  validates :authorized_user, :exclusion => { :in => %w(guest@mail.com), :message => "don't has the necessary privileges" }
 
   module Status
     ON = 'ON'
