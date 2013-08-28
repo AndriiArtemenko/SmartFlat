@@ -4,26 +4,34 @@
   <title><%= @device.name %></title>
 </head>
 <body>
-    <h2>Meter info:</h2>
-    <div>
-      <strong>Meter:</strong>
-      <%= @device.id %>
+    <h2><%= @device.name %>(<%= @device.id %>):</h2>
+    <% if @device.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% @device.errors.full_messages.each do |msg| %>
+            <li style="color: red;"><%= msg %></li>
+        <% end %>
+      </ul>
     </div>
-
-    <div>
-      <strong>Name:</strong>
-      <%= @device.name %>
-    </div>
-
-    <div>
-      <strong>Value</strong>
-      <%= @device.meter_state %>
-    </div>
-
-    <%= form_for(@device, :url => devices_path, :url => {:id => @device.id}) do |f| %>
-        <%= f.text_field(:meter_value, :value => @device.meter_state) %>
-        <%= f.submit "Change" %>
     <% end %>
+
+    <div style="width: 40%">
+      <table class="table table-striped">
+        <tr>
+          <td width=100>Initial</td>
+          <td>
+            <%= form_for(@device, :url => devices_path, :url => {:id => @device.id}) do |f| %>
+                <%= f.text_field :custom_value, :size => 10 %>
+                <%= f.submit "Change" %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>Value</td>
+          <td><%= @device.meter_state %></td>
+        </tr>
+      </table>
+    </div>
 </body>
 </html>
 
