@@ -59,9 +59,10 @@ class WiflyConnector
     if host != nil
       begin
         result = host.cmd(command)
-        if (result.include?(CMD_UART_INVALID) || result.include?(CMD_HELLO))
+        if (result.include?(CMD_UART_INVALID) || result.include?(CMD_HELLO) || 1==1)
           sleep(2);
           result = host.cmd(command)
+          Rails.logger.warn("UART say2: #{result}")
         else
           Rails.logger.warn("UART say: #{result}")
           raise IOError, "UART does not responding"
