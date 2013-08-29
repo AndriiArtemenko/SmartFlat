@@ -2,22 +2,30 @@ log4r_config:
   # define all loggers ...
   loggers:
     - name      : production
-      level     : WARN
+      level     : DEBUG #WARN
       trace     : 'false'
       outputters :
       - datefile
+      - console
     - name      : development
       level     : DEBUG
       trace     : 'true'
       outputters :
       - datefile
+      - console
 
   # define all outputters (incl. formatters)
   outputters:
+  - type     : StderrOutputter
+    name     : console
+    formatter:
+      date_pattern: '%H:%M:%S'
+      pattern     : '%d %l: %m '
+      type        : PatternFormatter
+
   - type: DateFileOutputter
     name: datefile
-    #dirname: "#{HOME}/logs" 
-    filename: "/log/log4r.log" # notice the file extension is needed! 
+    filename: "log/log4r.log" # notice the file extension is needed!
     formatter:
       date_pattern: '%H:%M:%S'
       pattern     : '%d %l: %m '
