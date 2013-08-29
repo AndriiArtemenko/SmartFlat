@@ -55,7 +55,7 @@ class WiflyConnector
   # execute command in UART mode.
   def uart(command)
     result = nil
-    host = connect(/\z/n)
+    host = connect(//n)
     if host != nil
       begin
         result = host.cmd(command)
