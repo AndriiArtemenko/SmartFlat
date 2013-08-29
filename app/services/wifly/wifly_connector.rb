@@ -59,6 +59,7 @@ class WiflyConnector
     if host != nil
       begin
         result = host.cmd(command)
+        Rails.logger.debug("UART hello result:  #{result}")
         if (result.include?(CMD_UART_INVALID) || result.include?(CMD_HELLO))
           sleep(2);
           result = host.cmd(command)
