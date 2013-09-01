@@ -69,12 +69,12 @@ class CurrentWiFlyProvider < WiFlyProvider
   # Converts raw sensor value to current value.
   def raw_to_current(raw)
     sensor_voltage_uv = (raw - @internal_zero_shift.to_f)*@internal_divider.to_f
-    hall_voltage_uv = sensor_voltage_uv*@external_divider.to_f - @external_zero_shift.to_f
+    hall_voltage_uv = sensor_voltage_uv*@external_divider.to_f
     (hall_voltage_uv != nil) ? hall_voltage_mv = (hall_voltage_uv / 1000).to_i : hall_voltage_mv = 0
     current = ((hall_voltage_mv - @external_zero_shift.to_f) / @current_step.to_f).round(2)
 
     # TODO: Remove after increase of accuracy in hardware-based part.
-    if(current < 1.5)
+    if(current < 0.5)
       current = 0
     end
 
