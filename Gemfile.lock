@@ -31,6 +31,9 @@ GEM
     arel (3.0.2)
     bcrypt-ruby (3.1.1-x86-mingw32)
     builder (3.0.4)
+    clockwork (0.6.0)
+      activesupport
+      tzinfo (~> 0.3.35)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -122,6 +125,7 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  clockwork
   coffee-rails (~> 3.2.1)
   devise
   jquery-rails

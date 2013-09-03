@@ -59,4 +59,14 @@ class Boiler < Device
   def after_save_callback
     self.remote_status = status
   end
+
+  # Watchdog  method for maintain remote status in actual state.
+  def perform
+    remote = remote_status
+    current = status
+    if remote != current
+      Rails.logger.info("#{self.class.to_s} lost status: remote=#{remote}, current=#{current}")
+      after_save_callback
+    end
+  end
 end
