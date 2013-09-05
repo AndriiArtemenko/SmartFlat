@@ -2,6 +2,7 @@ class Boiler < Device
   has_one :switcher, :as => :receiver, :class_name => 'SwitchWiFlyProvider'
   has_one :current_sensor, :as => :receiver, :class_name => 'CurrentWiFlyProvider'
   has_one :temperature_sensor, :as => :receiver, :class_name => 'TemperatureWiFlyProvider'
+  has_one :schedule_task, :as => :schedulable, :class_name => 'Scheduler'
 
   # Get complex device status
   # Result:

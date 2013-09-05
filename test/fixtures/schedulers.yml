@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  mask: 2013-09-05 10:35:48
+  shift: 1
+  alarm: 2013-09-05 10:35:48
+  object_id: 1
+  object_type: MyString
+
+two:
+  name: MyString
+  mask: 2013-09-05 10:35:48
+  shift: 1
+  alarm: 2013-09-05 10:35:48
+  object_id: 1
+  object_type: MyString
