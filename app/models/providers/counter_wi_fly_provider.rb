@@ -3,11 +3,15 @@ class CounterWiFlyProvider < WiFlyProvider
   GET_COUNTER_COMMAND = 'get_counter'
   RESET_COUNTER_COMMAND = 'reset_counter'
   RESET_COUNTER_SUCCESS = 'OK'
+  COUNTER_FACTOR = 'factor'
 
   # Return a counter value.
   def get_value
-    result = get_connector.uart(@get_value)
-    return result.strip.to_i
+    raw_result = get_connector.uart(@get_value)
+    int_result = raw_result.strip.to_i
+    (@counter_factor != nil) ? result = int_result*@counter_factor.to_f : result = int_result
+    logger.debug("Counter raw value=#{raw_result}, result=#{result}")
+    return result
   end
 
   # Return a counter value.
@@ -24,6 +28,7 @@ class CounterWiFlyProvider < WiFlyProvider
     super
     @get_value = get_config(GET_COUNTER_COMMAND)
     @reset_value = get_config(RESET_COUNTER_COMMAND)
+    @counter_factor = get_config(COUNTER_FACTOR)
   end
 
 end
