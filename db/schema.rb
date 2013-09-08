@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130905114258) do
+ActiveRecord::Schema.define(:version => 20130906125136) do
 
   create_table "devices", :force => true do |t|
     t.string   "name"
@@ -21,6 +21,16 @@ ActiveRecord::Schema.define(:version => 20130905114258) do
     t.string   "status"
     t.string   "custom_value"
     t.binary   "icon"
+  end
+
+  create_table "message_templates", :force => true do |t|
+    t.string   "name"
+    t.string   "subject"
+    t.text     "body"
+    t.string   "address"
+    t.string   "type"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "messages", :force => true do |t|
@@ -58,6 +68,16 @@ ActiveRecord::Schema.define(:version => 20130905114258) do
   end
 
   add_index "providers", ["receiver_type", "receiver_id"], :name => "index_providers_on_receiver_type_and_receiver_id"
+
+  create_table "reports", :force => true do |t|
+    t.string   "name"
+    t.integer  "message_template_id"
+    t.string   "message_template_type"
+    t.integer  "device_id"
+    t.string   "device_type"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
 
   create_table "schedulers", :force => true do |t|
     t.string   "name"

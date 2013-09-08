@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  message_template_id: 1
+  message_template_type: MyString
+  device_id: 1
+  device_type: MyString
+
+two:
+  name: MyString
+  message_template_id: 1
+  message_template_type: MyString
+  device_id: 1
+  device_type: MyString

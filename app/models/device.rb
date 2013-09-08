@@ -36,4 +36,13 @@ class Device < ActiveRecord::Base
   def before_save_callback
   end
 
+  # Hash of device state.
+  def get_hash
+    result = Hash.new()
+    result['value'] = custom_value
+    result['name'] = name
+    result['date'] = Time.now.strftime("%d/%m/%Y")
+    result
+  end
+
 end

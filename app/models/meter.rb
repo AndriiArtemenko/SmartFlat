@@ -20,6 +20,7 @@ class Meter < Device
       Rails.logger.debug("meter_value=#{result}")
     rescue => exception
       raise IOError, "Provider access error: #{counter.name}"
+      result = Status::UNKNOWN
     end
     result
   end
@@ -42,6 +43,14 @@ class Meter < Device
       Rails.logger.info("#{exception}")
       result = Status::UNKNOWN
     end
+  end
+
+  # Hash of meter state.
+  def get_hash
+    result = super()
+    result['counter_value'] = meter_value.to_s
+    result['serial_number'] = "CH5656"
+    result
   end
 
 end
