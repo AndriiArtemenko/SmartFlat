@@ -70,7 +70,10 @@ SmartFlat::Application.routes.draw do
   get "messages/DATA=:id" => "wiflys#postSensorsData"
   get "messages/list" => "messages#list"
 
-  get "scheduler" => "scheduler#start_scheduler"
+  get "scheduler" => "schedulers#start_scheduler"
+  get "schedulers/list" => "schedulers#list"
+  get "schedulers/new" => "schedulers#new"
+  get "schedulers/:id" => "schedulers#edit"
 
-  resources :devices, :providers
+  resources :devices, :providers, :schedulers
 end

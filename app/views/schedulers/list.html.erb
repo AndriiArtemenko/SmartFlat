@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Schedulers list</title>
+</head>
+<body>
+<div  style="width: 50%">
+  <table class="table table-hover">
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Mask</th>
+      <th>Perform</th>
+      <th>Next date</th>
+      <th></th>
+    </tr>
+
+    <% @schedulers.each do |scheduler| %>
+        <tr>
+          <td><%= scheduler.id %></td>
+          <td><%= scheduler.name %></td>
+          <td><%= scheduler.text_shift %></td>
+          <td><%= scheduler.mask.strftime("%d.%m.%Y %H:%M:%S") %></td>
+          <td><%= scheduler.schedulable==nil ? "None" : scheduler.schedulable.name %></td>
+          <td><%= scheduler.next_alarm.strftime("%d.%m.%Y %H:%M:%S") %></td>
+          <td><%= link_to("details", :action => "edit", :id => scheduler.id) %></td>
+        </tr>
+    <% end %>
+  </table>
+</div>
+
+</body>
+</html>
