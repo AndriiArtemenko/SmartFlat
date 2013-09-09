@@ -11,6 +11,7 @@ gem 'jquery-rails'
 gem 'clockwork'
 gem 'delayed_job_active_record'
 gem 'liquid'
+gem 'simple-navigation'
 
 # Gems used only for assets and not required
 # in production environments by default.

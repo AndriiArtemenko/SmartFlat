@@ -5,10 +5,11 @@
 
 </head>
 <body>
-<%= javascript_include_tag :application %>
+    <%= javascript_include_tag :application %>
     <%= stylesheet_link_tag :application %>
-    <div style="text-align:right; margin-right: 15px;">
-      <div>
+
+    <div style="text-align:right; margin-bottom: 20px; height: 50px;"  class="col-md-4">
+      <div class="alert alert-success">
         <% if user_signed_in? %>
             Signed in as <strong><%= current_user.email %></strong>
             <%= link_to('Sign out', destroy_user_session_path, :method => :delete) %>
@@ -18,7 +19,24 @@
       </div>
     </div>
 
-<%= yield %>
-
+    <table border="0" width="100%">
+      <tr width="1%">
+        <td rowspan="2" style="vertical-align: top; width: 220px; padding-right: 20px;">
+          <ol class="breadcrumb">
+            <%= render_navigation(:level => 1..2, :expand_all => true) %>
+          </ol>
+        </td>
+        <td>
+          <div role="complementary" style="padding-right:10px" class="affix-top" >
+          <%= render_navigation(:renderer => :breadcrumbs, :join_with => '  > ') %>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= yield %>
+        </td>
+      </tr>
+    </table>
 </body>
 </html>
