@@ -1,5 +1,6 @@
 class Scheduler < ActiveRecord::Base
   belongs_to :schedulable, :polymorphic => true
+  has_many :scheduler_logs
 
   def text_shift
     result = shifts_hash[shift]

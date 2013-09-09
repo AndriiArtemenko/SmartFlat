@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130906125136) do
+ActiveRecord::Schema.define(:version => 20130909142028) do
 
   create_table "devices", :force => true do |t|
     t.string   "name"
@@ -77,6 +77,13 @@ ActiveRecord::Schema.define(:version => 20130906125136) do
     t.string   "device_type"
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
+  end
+
+  create_table "scheduler_logs", :force => true do |t|
+    t.integer  "scheduler_id"
+    t.text     "scheduler_log"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "schedulers", :force => true do |t|
