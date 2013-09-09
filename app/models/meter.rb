@@ -17,6 +17,7 @@ class Meter < Device
     begin
       counter_value_ = counter.get_value
       result = diff_value.to_f + counter_value_.to_f
+      result = result.round(3)
       Rails.logger.debug("meter_value=#{result}")
     rescue => exception
       raise IOError, "Provider access error: #{counter.name}"
