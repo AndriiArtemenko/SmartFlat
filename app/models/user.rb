@@ -12,4 +12,11 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
+
+  GUEST_USER = "guest@mail.com"
+
+  # Default guest user.85
+  def self.guest_user
+    GUEST_USER
+  end
 end

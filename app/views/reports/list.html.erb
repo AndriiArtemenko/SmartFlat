@@ -22,7 +22,11 @@
           <td><%= report.name %></td>
           <td><%= report.device == nil ? "None" : report.device.name %></td>
           <td><%= report.message_template == nil ? "None" : report.message_template.type %></td>
-          <td><%= report.message_template == nil ? "None" : report.message_template.address %></td>
+          <% if(current_user.email!=User.guest_user) %>
+            <td><%= report.message_template == nil ? "None" : report.message_template.address %></td>
+          <% else %>
+            <td>Not allowed for guests.</td>
+          <% end %>
           <td><%= report.message_template == nil ? "None" : report.message_template.subject %></td>
           <td><%= link_to("details", :action => "edit", :id => report.id) %></td>
         </tr>

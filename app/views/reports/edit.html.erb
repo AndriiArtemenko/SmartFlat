@@ -18,7 +18,11 @@
     </tr>
     <tr>
       <td>Address</td>
-      <td><%= @report.message_template == nil ? "None" : @report.message_template.address %></td>
+      <% if(current_user.email!=User.guest_user) %>
+          <td><%= @report.message_template == nil ? "None" : @report.message_template.address %></td>
+      <% else %>
+          <td>Not allowed for guests.</td>
+      <% end %>
     </tr>
     <tr>
       <td>Subject</td>
