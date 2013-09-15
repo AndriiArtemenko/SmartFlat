@@ -52,6 +52,7 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :devices, 'devices', "#{devices_path}/list"
     primary.item :providers, 'providers', "#{providers_path}/list"
     primary.item :schedulers, 'schedulers', "#{schedulers_path}/list"
+    primary.item :schedulers, 'reports', "#{reports_path}/list"
     #primary.item :reports, 'reports', "#{reports_path}/list"
     #primary.item :schedulers, 'schedulers', "#{schedulers_path}/list"
 

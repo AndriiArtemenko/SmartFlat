@@ -57,7 +57,7 @@ SmartFlat::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
-  #root :to => 'main#index'
+  root :to => "devices#list"
   get "devices/list" => "devices#list"
   get "devices/new" => "devices#new"
   get "devices/:id" => "devices#edit"
@@ -75,5 +75,8 @@ SmartFlat::Application.routes.draw do
   get "schedulers/new" => "schedulers#new"
   get "schedulers/:id" => "schedulers#edit"
 
-  resources :devices, :providers, :schedulers
+  get "reports/list" => "reports#list"
+  get "reports/:id" => "reports#edit"
+
+  resources :devices, :providers, :schedulers, :reports
 end

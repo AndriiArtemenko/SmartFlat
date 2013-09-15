@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reports list</title>
+</head>
+<body>
+<div  style="width: 80%">
+  <table class="table table-hover">
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Source</th>
+      <th>Type</th>
+      <th>Address</th>
+      <th>Subject</th>
+      <th></th>
+    </tr>
+
+    <% @reports.each do |report| %>
+        <tr>
+          <td><%= report.id %></td>
+          <td><%= report.name %></td>
+          <td><%= report.device == nil ? "None" : report.device.name %></td>
+          <td><%= report.message_template == nil ? "None" : report.message_template.type %></td>
+          <td><%= report.message_template == nil ? "None" : report.message_template.address %></td>
+          <td><%= report.message_template == nil ? "None" : report.message_template.subject %></td>
+          <td><%= link_to("details", :action => "edit", :id => report.id) %></td>
+        </tr>
+    <% end %>
+  </table>
+</div>
+
+</body>
+</html>
