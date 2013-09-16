@@ -46,6 +46,11 @@ class Meter < Device
     end
   end
 
+  # Provide meter serial number.
+  def meter_sn
+    counter.get_sn
+  end
+
   # Hash of meter state.
   def get_hash
     result = super()

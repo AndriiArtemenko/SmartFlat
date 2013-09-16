@@ -4,6 +4,7 @@ class CounterWiFlyProvider < WiFlyProvider
   RESET_COUNTER_COMMAND = 'reset_counter'
   RESET_COUNTER_SUCCESS = 'OK'
   COUNTER_FACTOR = 'factor'
+  SERIAL_NUMBER = 'serial_number'
 
   # Return a counter value.
   def get_value
@@ -21,6 +22,13 @@ class CounterWiFlyProvider < WiFlyProvider
       return true
     end
     return false
+  end
+
+  # Provide counter serial number.
+  def get_sn
+    sn = get_config(SERIAL_NUMBER)
+    sn = sn != nil ? sn : 'Unknown'
+    sn
   end
 
   # Init UART config.
