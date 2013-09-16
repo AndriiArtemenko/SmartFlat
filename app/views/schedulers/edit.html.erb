@@ -24,6 +24,10 @@
       <td>Next date</td>
       <td><%= @scheduler.next_alarm.strftime("%d.%m.%Y %H:%M:%S") %></td>
     </tr>
+    <tr>
+      <td>Current date</td>
+      <td><%= Time.now.strftime("%d.%m.%Y %H:%M:%S") %></td>
+    </tr>
   </table>
 
   <h3>Logs</h3>
