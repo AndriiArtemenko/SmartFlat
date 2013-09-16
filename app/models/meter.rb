@@ -55,7 +55,7 @@ class Meter < Device
   def get_hash
     result = super()
     result['counter_value'] = meter_value.to_s
-    result['serial_number'] = "CH5656"
+    result['serial_number'] = "#{meter_sn}"
     result
   end
 
