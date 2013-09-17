@@ -20,7 +20,7 @@ class DevicesController < ApplicationController
 
   def list
     @devices_list = [Boiler.to_s, Meter.to_s]
-    @devices = Device.all
+    @devices = Device.order('devices.name').all
     logger.debug("Show devices list : #{@devices}")
   end
 
