@@ -1,14 +1,17 @@
 class Report < ActiveRecord::Base
   belongs_to :message_template, :polymorphic => true
-  belongs_to :device, :polymorphic => true
+  has_many :reports_devices
+  has_many :devices, :through => :reports_devices
   has_one :scheduler
 
+  # Execute report.
   def perform
-    if (message_template != nil && device != nil)
+    if (message_template != nil && devices != nil)
       begin
-        device_hash = device.get_hash
-        subject = message_template.render_subject(device_hash)
-        body = message_template.render_body(device_hash)
+        devices_hash = prepared_data
+        devices_hash = (devices_hash != nil) ? devices_hash : Hash.new
+        subject = message_template.render_subject(devices_hash)
+        body = message_template.render_body(devices_hash)
         if (subject != nil && body != nil)
           mail = DefaultMailer.send_email(message_template.address, subject, body)
           result = "#{mail.header.fields.to_s.force_encoding("UTF-8")}\n\n #{mail.body.to_s}"
@@ -19,4 +22,18 @@ class Report < ActiveRecord::Base
       result
     end
   end
+
+  private
+
+  # Provide devices data hash.
+  def prepared_data
+    hash_list = Array.new
+    devices.each { |device| hash_list << device.get_hash }
+
+    data = Hash.new
+    data['current_date'] = Time.now.strftime("%d.%m.%Y")
+    data['devices'] = hash_list
+    return data
+  end
+
 end

@@ -12,6 +12,7 @@ class SchedulersController < ApplicationController
     @scheduler = Scheduler.find(params[:id])
   end
 
+  # Execute scheduler.
   def start_scheduler
     current = Time.now
     tasks = Hash.new

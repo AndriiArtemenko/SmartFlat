@@ -14,7 +14,6 @@ class MessageTemplate < ActiveRecord::Base
 
   # Replaces variables in the template
   def render_custom(template, params)
-    result = nil
     if (template != nil)
       blank = Liquid::Template.parse(template)
       blank.render(params)
