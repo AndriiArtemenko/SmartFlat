@@ -4,49 +4,49 @@
   <title><%= @scheduler.name %></title>
 </head>
 <body>
-<h2><%= @scheduler.name %>(<%= @scheduler.id %>):</h2>
+    <h2><%= @scheduler.name %>(<%= @scheduler.id %>):</h2>
 
-<div  style="width: 50%">
-  <table class="table table-hover">
-    <tr>
-      <td>Type</td>
-      <td><%= @scheduler.text_shift %></td>
-    </tr>
-    <tr>
-      <td>Mask</td>
-      <td><%= @scheduler.mask.strftime("%d.%m.%Y %H:%M:%S") %></td>
-    </tr>
-    <tr>
-      <td>Perform</td>
-      <td><%= @scheduler.schedulable==nil ? "None" : @scheduler.schedulable.name %></td>
-    </tr>
-    <tr>
-      <td>Next date</td>
-      <td><%= @scheduler.next_alarm.strftime("%d.%m.%Y %H:%M:%S") %></td>
-    </tr>
-    <tr>
-      <td>Current date</td>
-      <td><%= Time.now.strftime("%d.%m.%Y %H:%M:%S") %></td>
-    </tr>
-  </table>
+    <div  style="width: 50%">
+      <table class="table table-hover">
+        <tr>
+          <td>Type</td>
+          <td><%= @scheduler.text_shift %></td>
+        </tr>
+        <tr>
+          <td>Mask</td>
+          <td><%= @scheduler.mask.strftime("%d.%m.%Y %H:%M:%S") %></td>
+        </tr>
+        <tr>
+          <td>Perform</td>
+          <td><%= @scheduler.schedulable==nil ? "None" : @scheduler.schedulable.name %></td>
+        </tr>
+        <tr>
+          <td>Next date</td>
+          <td><%= @scheduler.next_alarm.strftime("%d.%m.%Y %H:%M:%S") %></td>
+        </tr>
+        <tr>
+          <td>Current date</td>
+          <td><%= Time.now.strftime("%d.%m.%Y %H:%M:%S") %></td>
+        </tr>
+      </table>
+    </div>
 
-  <h3>Logs</h3>
-  <div  style="width: 80%">
-    <table class="table table-hover">
-      <tr>
-        <th  width=30%>Date</th>
-        <th>Log</th>
-      </tr>
-
-      <% @scheduler.scheduler_logs.each do |log| %>
+    <h3>Logs</h3>
+    <div  style="width: 75%">
+        <table class="table table-hover">
           <tr>
-            <td><%= log.created_at.strftime("%d.%m.%Y %H:%M:%S") %></td>
-            <td><%= log.scheduler_log %></td>
+            <th  width=30%>Date</th>
+            <th>Log</th>
           </tr>
-      <% end %>
-    </table>
-  </div>
-</div>
+
+          <% @scheduler.scheduler_logs.each do |log| %>
+              <tr>
+                <td><%= log.created_at.strftime("%d.%m.%Y %H:%M:%S") %></td>
+                <td><%= log.scheduler_log %></td>
+              </tr>
+          <% end %>
+        </table>
+    </div>
 </body>
 </html>
 
