@@ -14,7 +14,7 @@ class Report < ActiveRecord::Base
         body = message_template.render_body(devices_hash)
         if (subject != nil && body != nil)
           mail = DefaultMailer.send_email(message_template.address, subject, body)
-          result = "#{mail.header.fields.to_s.force_encoding("UTF-8")}\n\n #{mail.body.to_s}"
+          result = "#{subject}\n #{body}"
         end
       rescue => exception
         result = exception.message
