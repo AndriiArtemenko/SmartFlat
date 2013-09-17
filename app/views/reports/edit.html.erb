@@ -10,7 +10,7 @@
   <table class="table table-hover">
     <tr>
       <td>Source</td>
-      <td><%= @report.device==nil ? "None" : @report.device.name %></td>
+      <td><%= @report.sources %></td>
     </tr>
     <tr>
       <td>Type</td>
@@ -30,7 +30,8 @@
     </tr>
     <tr>
       <td>Body</td>
-      <td><%= @report.message_template == nil ? "None" : @report.message_template.body %></td>
+      <td><%= text_area_tag :message_body,  @report.message_template.body, :size =>"100x10", :readonly => true %></td>
+
     </tr>
   </table>
 

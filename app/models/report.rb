@@ -23,6 +23,14 @@ class Report < ActiveRecord::Base
     end
   end
 
+  def sources
+    result = ''
+    if(devices != nil)
+      devices.each { |device| result = result + "#{device.name}\n" }
+      end
+      result
+  end
+
   private
 
   # Provide devices data hash.

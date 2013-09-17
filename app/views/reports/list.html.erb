@@ -20,7 +20,7 @@
         <tr>
           <td><%= report.id %></td>
           <td><%= report.name %></td>
-          <td><%= report.device == nil ? "None" : report.device.name %></td>
+          <td><%= report.sources %></td>
           <td><%= report.message_template == nil ? "None" : report.message_template.type %></td>
           <% if(current_user.email!=User.guest_user) %>
             <td><%= report.message_template == nil ? "None" : report.message_template.address %></td>
