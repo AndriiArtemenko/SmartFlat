@@ -35,14 +35,14 @@
     <div  style="width: 75%">
         <table class="table table-hover">
           <tr>
-            <th  width=30%>Date</th>
+            <th  width=20%>Date</th>
             <th>Log</th>
           </tr>
 
           <% @scheduler.scheduler_logs.each do |log| %>
               <tr>
                 <td><%= log.created_at.strftime("%d.%m.%Y %H:%M:%S") %></td>
-                <td><%= log.scheduler_log %></td>
+                <td><%= text_area_tag :log,  log.scheduler_log, :size =>"100x10", :readonly => true %></td>
               </tr>
           <% end %>
         </table>
