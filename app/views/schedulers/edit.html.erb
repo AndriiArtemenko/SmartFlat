@@ -42,7 +42,7 @@
           <% @scheduler.scheduler_logs.each do |log| %>
               <tr>
                 <td><%= log.created_at.strftime("%d.%m.%Y %H:%M:%S") %></td>
-                <td><%= text_area_tag :log,  log.scheduler_log, :size =>"100x10", :readonly => true %></td>
+                <td><pre><%= log.scheduler_log %></pre></td>
               </tr>
           <% end %>
         </table>
